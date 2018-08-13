@@ -1,0 +1,19 @@
+<div>
+  <H2>Agrega campos</H2>
+  <label for="Empresa">Client ID</label><br><input id="Empresa" type="text">
+  <br>
+  <label for="Li">List</label><br><input [(ngModel)]="valor" id="Li" type="text" >
+  <button (click)="addItem()" >ADD</button><button (click)="removeItem()" >REMOVE</button>
+  <br>
+  <!-- <> -->
+  <ul *ngFor="let lista of lis" >
+    <li>{{lista.employeeName ? lista.employeeName : "Employee Names:"}}</li>
+  </ul>
+  <!-- <> -->
+  <br>
+  <label for="Pnum">Page Number</label><br><input id="Pnum" type="text">
+  <br>
+  <label for="Psize">Page Size</label><br><input id="Psize" type="text">
+  <br>
+  <button (click)="sendData()" > Acepta </button>
+</div>
