@@ -20,9 +20,11 @@ export class SendInfo{
         )
     ));
 
-    public reqMessage(){
-        this.http.post('localhost:8080/getLeaves', {body:{message: 'mess'}})
-        .subscribe(val=>{console.log(val)})
-        return new A.sendReq({message: "Aqui, si estan pasando cosas..."})
-    }
+    @Effect()
+    sendGetReq$ = this.actions$.pipe(ofType(A.ClientActions.ASK_CLIENT),
+        mergeMap( (action: A.gotClientInfo) => this.http.get('http://localhost:8080/getLeaves')
+        .pipe(
+            map((data: Body_Msg.ClientsInfo) => {data.employee.fullName=data.employee.lastName+","+data.employee.firstName; return new A.gotClientInfo(data);})
+        )
+    ));
 };

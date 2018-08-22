@@ -3,10 +3,16 @@ import { Action } from "@ngrx/store";
 export enum ClientActions{
     GENERATE_NEW_CLIENT = "[NEW] NEW_CLIENT",
     SEND_REQUEST_BACKEND = "[SEND] REQUEST_SENT",
-    SET_NEW_LIST = "[UPDATE] LIST_UPDATED"
+    SET_NEW_LIST = "[UPDATE] LIST_UPDATED",
+    ASK_CLIENT = "[GET] ASK_FOR_CLIENT",
+    CLIENT_RECIEBED = "[RECIEBE] ITEMS_GOT"
 }
 
-export type Client = addClient | sendReq | updateList
+export type MessageAction = addClient;
+
+export type ReciebedActions = sendReq | askForClient;
+
+export type ClientAction = gotClientInfo;
 
 export class addClient implements Action{
     readonly type = ClientActions.GENERATE_NEW_CLIENT;
@@ -18,7 +24,12 @@ export class sendReq implements Action{
     constructor( public payload: Body_Msg.Recived = Body_Msg.InitialRecieved ){}
 }
 
-export class updateList implements Action{
-    readonly type = ClientActions.SET_NEW_LIST;
-    constructor( public payload: Array<object> = [{"sortColumn": "employeeName", "sortOrder": "ASC"},{"employeeName": "Juanito"}] ){}
+export class askForClient implements Action{
+    readonly type = ClientActions.ASK_CLIENT;
+    constructor( public payload: Body_Msg.Recived = {message: "Not A Thing..."} ){}
+}
+
+export class gotClientInfo implements Action{
+    readonly type = ClientActions.CLIENT_RECIEBED;
+    constructor( public payload: Body_Msg.ClientsInfo ){}
 }

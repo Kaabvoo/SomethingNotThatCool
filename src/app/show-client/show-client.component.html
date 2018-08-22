@@ -1,0 +1,12 @@
+<div>
+    <div *ngIf="(clientInfo$ | async) as client; else loading" >
+      <span>Name:  {{client.curremptClient.employee.fullName}}</span><br>
+      <span>ID: {{client.curremptClient.employee.employeeId}}</span><br>
+      <span>PolicyId: {{client.curremptClient.policyId}}</span><br>
+      <span>Leave type: {{client.curremptClient.leaveType}}</span><br>
+      <ul>
+        <li *ngFor="let pay of client.curremptClient.payments" > {{pay.amount}} must be pay before {{pay.date}} for not generating interest </li>
+      </ul>
+    </div>
+    <button (click)="getPearson()" >Get The Person</button>
+</div>

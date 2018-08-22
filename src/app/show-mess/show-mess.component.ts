@@ -13,14 +13,14 @@ export class ShowMessComponent implements OnInit {
   constructor( private store: Store<Body_Msg.Items> ) { }
 
   valor: string;
-  result = this.store.select(ch => ch.message)
+  result = this.store.select(ch => ch)
+  clientInfo$ = this.store.select(cli => cli.client)
   lis: Array<object> = [
     {"sortColumn": "employeeName", "sortOrder": "ASC"},
     {"employeeName": "Juanito"}
   ]
 
   ngOnInit() {
-    this.store.dispatch( new A.addClient({"clientId": "M34","sortList": [{"sortColumn": "employeeName", "sortOrder": "ASC"},{"employeeName": "Juanito"}],"pageNumber": 0,"pageSize": 25}));
   }
 
   sendData(){
@@ -34,5 +34,4 @@ export class ShowMessComponent implements OnInit {
   removeItem(){
     this.lis.pop()
   }
-
 }
